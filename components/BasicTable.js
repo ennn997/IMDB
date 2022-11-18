@@ -66,7 +66,6 @@ const BasicTable = () => {
     filterFns: {
       fuzzyFilter,
     },
-    enableColumnResizing: true,
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
     onGlobalFilterChange: setGlobalFilter,
