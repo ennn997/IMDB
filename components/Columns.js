@@ -12,9 +12,6 @@ export const COLUMNS = [
     header: () => 'Movie name',
     id: 'title',
     enableColumnFilter: false,
-    size: 350,
-    minSize: 100,
-    maxSize: 400,
   }),
   columnHelper.accessor('ratings', {
     header: () => <div style={{ textAlign: 'center', align: 'center' }}>Ratings</div>,
