@@ -1,5 +1,3 @@
-// import { server } from '../config'
-
 export const getMovies = async () => {
   const response = await fetch(`/api/`)
   if (response.ok) {
