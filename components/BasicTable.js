@@ -57,7 +57,7 @@ const BasicTable = () => {
   const { isLoading, data: movies, isError, error } = useQuery(['movies'], getMovies)
 
   const columns = useMemo(() => COLUMNS, [])
-  const data = useMemo(() => movies, [])
+  const data = useMemo(() => movies, [movies])
 
   const table = useReactTable({
     data,
