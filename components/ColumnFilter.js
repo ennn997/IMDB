@@ -1,6 +1,6 @@
 import { HStack, Input, Select } from '@chakra-ui/react'
 
-export default function FilterColumn({ column, table }) {
+export default function ColumnFilter({ column, table }) {
   const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id)
 
   const columnFilterValue = column.getFilterValue()
@@ -38,17 +38,39 @@ export default function FilterColumn({ column, table }) {
         onChange={(e) => column.setFilterValue(e.target.value || undefined)}
         value={columnFilterValue || ''}
       >
-        <option value=""></option>
-        <option value="0">0-1</option>
-        <option value="1">1-2</option>
-        <option value="2">2-3</option>
-        <option value="3">3-4</option>
-        <option value="4">4-5</option>
-        <option value="5">5-6</option>
-        <option value="6">6-7</option>
-        <option value="7">7-8</option>
-        <option value="8">8-9</option>
-        <option value="9">9-10</option>
+        <option value="" align="center">
+          -
+        </option>
+        <option value="0" align="center">
+          0-1
+        </option>
+        <option value="1" align="center">
+          1-2
+        </option>
+        <option value="2" align="center">
+          2-3
+        </option>
+        <option value="3" align="center">
+          3-4
+        </option>
+        <option value="4" align="center">
+          4-5
+        </option>
+        <option value="5" align="center">
+          5-6
+        </option>
+        <option value="6" align="center">
+          6-7
+        </option>
+        <option value="7" align="center">
+          7-8
+        </option>
+        <option value="8" align="center">
+          8-9
+        </option>
+        <option value="9" align="center">
+          9-10
+        </option>
       </Select>
     </>
   )

@@ -1,7 +1,7 @@
-import AddMovie from '../../components/NewMovieForm'
+import NewMovieForm from '../../components/NewMovieForm'
 
 const NewMovie = () => {
-  return <AddMovie />
+  return <NewMovieForm />
 }
 
 export default NewMovie

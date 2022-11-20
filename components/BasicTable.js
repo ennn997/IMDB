@@ -37,7 +37,7 @@ import { COLUMNS } from './Columns'
 import { getMovies } from '../ssp/getMovies'
 
 import GlobalFilter from './GlobalFilter'
-import FilterColumn from './FilterColumn'
+import ColumnFilter from './ColumnFilter'
 
 const fuzzyFilter = (row, columnId, value, addMeta) => {
   const itemRank = rankItem(row.getValue(columnId), value)
@@ -63,9 +63,6 @@ const BasicTable = () => {
     data,
     columns,
     state: { globalFilter, sorting },
-    filterFns: {
-      fuzzyFilter,
-    },
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
     onGlobalFilterChange: setGlobalFilter,
@@ -101,7 +98,6 @@ const BasicTable = () => {
         </Text>
         <HStack my="20px" direction="row">
           <GlobalFilter callback={(globalFilter) => setGlobalFilter(globalFilter)} />
-
           <Button color="white" bg="blue.500" onClick={handleNewMovie} width="140px">
             + Add Movie
           </Button>
@@ -120,6 +116,7 @@ const BasicTable = () => {
                     mt="10px"
                     fontSize="15px"
                     textTransform="capitalization"
+                    style={{ width: header.getSize() !== 150 ? header.getSize() : undefined }}
                   >
                     <div
                       {...{
@@ -135,8 +132,8 @@ const BasicTable = () => {
                       </HStack>
                     </div>
                     {header.column.getCanFilter() ? (
-                      <div>
-                        <FilterColumn column={header.column} table={table} />
+                      <div style={{ marginTop: '10px' }}>
+                        <ColumnFilter column={header.column} table={table} />
                       </div>
                     ) : null}
                   </Th>
@@ -147,9 +144,16 @@ const BasicTable = () => {
 
           <Tbody>
             {table.getRowModel().rows.map((row) => (
-              <Tr key={row.id} height="30px">
+              <Tr key={row.id}>
                 {row.getAllCells().map((cell) => (
-                  <Td key={cell.id} border="2px solid #C9DCEB">
+                  <Td
+                    key={cell.id}
+                    border="2px solid #C9DCEB"
+                    mt="10px"
+                    fontSize="14px"
+                    color="blackAlpha.900"
+                    fontWeight="500"
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>
                 ))}

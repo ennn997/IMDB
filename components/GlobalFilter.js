@@ -16,8 +16,9 @@ const GlobalFilter = ({ callback }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search by movie name, director or starring actor..."
-        width="770px"
+        width="710px"
         border="2px solid #C9DCEB"
+        marginRight="7px"
       />
     </form>
   )

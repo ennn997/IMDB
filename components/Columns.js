@@ -12,16 +12,17 @@ export const COLUMNS = [
     header: () => 'Movie name',
     id: 'title',
     enableColumnFilter: false,
+    size: 200,
   }),
   columnHelper.accessor('ratings', {
-    header: () => <div style={{ textAlign: 'center', align: 'center' }}>Ratings</div>,
-    cell: (num) => roundedToFixed(num.getValue(), 1),
+    header: () => 'Ratings',
     id: 'ratings',
+    cell: (num) => roundedToFixed(num.getValue(), 1),
     enableGlobalColumnFilter: false,
     filterFn: (row, id, filterValue) => row.getValue(id).startsWith(filterValue),
   }),
   columnHelper.accessor('year', {
-    header: () => <div style={{ textAlign: 'center' }}>Year</div>,
+    header: () => 'Year',
     id: 'year',
     enableGlobalColumnFilter: false,
   }),
@@ -29,10 +30,12 @@ export const COLUMNS = [
     header: () => 'Director',
     id: 'director',
     enableColumnFilter: false,
+    size: 180,
   }),
   columnHelper.accessor('starring', {
     header: () => 'Starring',
     id: 'staring',
     enableColumnFilter: false,
+    size: 150,
   }),
 ]
