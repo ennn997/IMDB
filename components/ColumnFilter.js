@@ -1,6 +1,6 @@
 import { HStack, Input, Select } from '@chakra-ui/react'
 
-export default function ColumnFilter({ column, table }) {
+const ColumnFilter = ({ column, table }) => {
   const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id)
 
   const columnFilterValue = column.getFilterValue()
@@ -75,3 +75,5 @@ export default function ColumnFilter({ column, table }) {
     </>
   )
 }
+
+export default ColumnFilter

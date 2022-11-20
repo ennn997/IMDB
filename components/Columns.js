@@ -2,7 +2,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 const columnHelper = createColumnHelper()
 
-function roundedToFixed(input, digits) {
+const roundedToFixed = (input, digits) => {
   const rounded = Math.pow(10, digits)
   return (Math.round(input * rounded) / rounded).toFixed(digits)
 }
