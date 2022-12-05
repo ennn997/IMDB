@@ -1,5 +1,5 @@
 export const getMovies = async () => {
-  const response = await fetch(`/api/`)
+  const response = await fetch(`/api`)
   if (response.ok) {
     return response.json()
   } else {

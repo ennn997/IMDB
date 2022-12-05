@@ -12,30 +12,28 @@ const ColumnFilter = ({ column, table }) => {
         value={columnFilterValue?.[0] || ''}
         onChange={(e) => column.setFilterValue((old) => [e.target.value, old?.[1]])}
         placeholder={`Min`}
-        width="70px"
-        height="30px"
-        fontSize={14}
-        border="2px solid #C9DCEB"
+        width="4.5rem"
+        fontSize="0.9rem"
+        border="0.17rem solid #C9DCEB"
       />
       <Input
         type="number"
         value={columnFilterValue?.[1] || ''}
         onChange={(e) => column.setFilterValue((old) => [old?.[0], e.target.value])}
         placeholder={`Max`}
-        width="70px"
-        height="30px"
-        fontSize={14}
-        border="2px solid #C9DCEB"
+        width="4.5rem"
+        fontSize="0.9rem"
+        border="0.17rem solid #C9DCEB"
       />
     </HStack>
   ) : (
     <>
       <Select
-        width="80px"
-        height="30px"
-        border="2px solid #C9DCEB"
-        fontSize={14}
-        onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+        type="range"
+        width="5.5rem"
+        border="0.17rem solid #C9DCEB"
+        fontSize="0.9rem"
+        onChange={(e) => column.setFilterValue(e.target.value) || undefined}
         value={columnFilterValue || ''}
       >
         <option value="">-</option>

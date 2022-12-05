@@ -15,10 +15,10 @@ const GlobalFilter = ({ callback }) => {
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Search by movie name, director or starring actor..."
-        width="710px"
-        border="2px solid #C9DCEB"
-        marginRight="7px"
+        placeholder="Search by movie name, director or starring..."
+        width="45rem"
+        border="0.17rem solid #C9DCEB"
+        fontSize="0.9rem"
       />
     </form>
   )

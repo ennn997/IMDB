@@ -93,12 +93,12 @@ const BasicTable = () => {
   return (
     <Center>
       <Box marginLeft="auto" marginRight="auto">
-        <Text fontSize="35px" mt="60px" fontWeight="500">
+        <Text fontSize="2.5rem" mt="3rem" fontWeight="500">
           MovieDB
         </Text>
-        <HStack my="20px" direction="row">
+        <HStack my="1.5rem" direction="row">
           <GlobalFilter callback={(globalFilter) => setGlobalFilter(globalFilter)} />
-          <Button color="white" bg="blue.500" onClick={handleNewMovie} width="140px">
+          <Button color="white" bg="blue.500" onClick={handleNewMovie} width="8rem">
             + Add Movie
           </Button>
         </HStack>
@@ -110,11 +110,10 @@ const BasicTable = () => {
                 {headerGroup.headers.map((header) => (
                   <Th
                     key={header.id}
-                    border="2px solid #C9DCEB"
+                    border="0.13rem solid #C9DCEB"
                     fontWeight="900"
                     color="blackAlpha.900"
-                    mt="10px"
-                    fontSize="15px"
+                    fontSize="0.8rem"
                     textTransform="capitalization"
                     style={{ width: header.getSize() !== 150 ? header.getSize() : undefined }}
                   >
@@ -148,9 +147,8 @@ const BasicTable = () => {
                 {row.getAllCells().map((cell) => (
                   <Td
                     key={cell.id}
-                    border="2px solid #C9DCEB"
-                    mt="10px"
-                    fontSize="14px"
+                    border="0.12rem solid #C9DCEB"
+                    fontSize="0.8rem"
                     color="blackAlpha.900"
                     fontWeight="500"
                   >
@@ -161,12 +159,11 @@ const BasicTable = () => {
             ))}
           </Tbody>
         </Table>
-
-        <Stack mt="15px" mb="30px" spacing={2} direction="row" justify="right">
+        <Stack mt="1.3rem" mb="2.6rem" spacing={2} direction="row" justify="right">
           <Button
             leftIcon={<ChevronLeftIcon boxSize={6} />}
             textColor="blue.500"
-            border="2px solid #C9DCEB"
+            border="0.17rem solid #C9DCEB"
             colorScheme="white"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
@@ -178,7 +175,7 @@ const BasicTable = () => {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
             textColor="blue.500"
-            border="2px solid #C9DCEB"
+            border="0.17rem solid #C9DCEB"
             colorScheme="white"
           >
             Next
