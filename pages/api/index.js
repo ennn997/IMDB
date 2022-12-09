@@ -12,9 +12,10 @@ const movieSchema = Joi.object().keys({
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    const { start, size } = req.query
     try {
       const movies = await prisma.movie.findMany()
-      res.status(200).json(movies)
+      res.status(200).json(movies.slice(parseInt(start), parseInt(start) + parseInt(size)) ?? [])
     } catch (error) {
       res.status(500).json({ error: 'Oops, something went wrong! ' })
     }

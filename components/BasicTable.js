@@ -1,12 +1,6 @@
 import { useMemo, useState } from 'react'
 
-import {
-  getCoreRowModel,
-  useReactTable,
-  getFilteredRowModel,
-  getSortedRowModel,
-  getPaginationRowModel,
-} from '@tanstack/react-table'
+import { getCoreRowModel, useReactTable, getFilteredRowModel, getSortedRowModel } from '@tanstack/react-table'
 
 import { rankItem } from '@tanstack/match-sorter-utils'
 
@@ -39,7 +33,17 @@ const BasicTable = () => {
 
   const [sorting, setSorting] = useState([])
 
-  const { isLoading, data: movies, isError, error } = useQuery(['movies'], getMovies)
+  const [pagination, setPagination] = useState({
+    pageIndex: 0,
+    pageSize: 10,
+  })
+
+  const {
+    isLoading,
+    data: movies,
+    isError,
+    error,
+  } = useQuery(['movies', pagination.pageIndex, pagination.pageSize], getMovies, { keepPreviousData: true })
 
   const columns = useMemo(() => COLUMNS, [])
   const data = useMemo(() => movies, [movies])
@@ -47,14 +51,16 @@ const BasicTable = () => {
   const table = useReactTable({
     data,
     columns,
-    state: { globalFilter, sorting },
+    state: { globalFilter, sorting, pagination },
     globalFilterFn: fuzzyFilter,
     getCoreRowModel: getCoreRowModel(),
     onGlobalFilterChange: setGlobalFilter,
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
-    getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: true,
+    onPaginationChange: setPagination,
+    pageCount: data && data.length,
   })
 
   if (isLoading) {
@@ -70,7 +76,7 @@ const BasicTable = () => {
   }
 
   return (
-    <Box width="54rem" marginLeft="auto" marginRight="auto" px="1rem">
+    <Box width="56rem" marginLeft="auto" marginRight="auto" px="1rem">
       <Header />
       <HStack my="1.5rem" justify="space-between">
         <GlobalFilter callback={(globalFilter) => setGlobalFilter(globalFilter)} />
