@@ -4,8 +4,6 @@ import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons'
 
 import { flexRender } from '@tanstack/react-table'
 
-import ColumnFilter from './ColumnFilter'
-
 const MovieTableContainer = ({ table }) => {
   return (
     <TableContainer>
@@ -36,11 +34,6 @@ const MovieTableContainer = ({ table }) => {
                       {flexRender(header.column.columnDef.header, header.getContext())}
                     </HStack>
                   </div>
-                  {header.column.getCanFilter() ? (
-                    <div style={{ marginTop: '10px' }}>
-                      <ColumnFilter column={header.column} table={table} />
-                    </div>
-                  ) : null}
                 </Th>
               ))}
             </Tr>

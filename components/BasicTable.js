@@ -1,8 +1,6 @@
 import { useMemo, useState } from 'react'
 
-import { getCoreRowModel, useReactTable, getFilteredRowModel, getSortedRowModel } from '@tanstack/react-table'
-
-import { rankItem } from '@tanstack/match-sorter-utils'
+import { getCoreRowModel, useReactTable, getSortedRowModel } from '@tanstack/react-table'
 
 import { useQuery } from '@tanstack/react-query'
 
@@ -17,19 +15,15 @@ import Header from './Header'
 import AddMovieButton from './AddMovieButton'
 import GlobalFilter from './GlobalFilter'
 import MovieTableContainer from './MovieTableContainer'
-
-const fuzzyFilter = (row, columnId, value, addMeta) => {
-  const itemRank = rankItem(row.getValue(columnId), value)
-
-  addMeta({
-    itemRank,
-  })
-
-  return itemRank.passed
-}
+import YearFilter from './YearFilter'
+import RatingFilter from './RatingFilter'
 
 const BasicTable = () => {
   const [globalFilter, setGlobalFilter] = useState('')
+
+  const [rating, setRating] = useState('')
+
+  const [year, setYear] = useState('')
 
   const [sorting, setSorting] = useState([])
 
@@ -43,7 +37,9 @@ const BasicTable = () => {
     data: movies,
     isError,
     error,
-  } = useQuery(['movies', pagination.pageIndex, pagination.pageSize], getMovies, { keepPreviousData: true })
+  } = useQuery(['movies', pagination.pageIndex, pagination.pageSize, globalFilter, rating, year], getMovies, {
+    keepPreviousData: true,
+  })
 
   const columns = useMemo(() => COLUMNS, [])
   const data = useMemo(() => movies, [movies])
@@ -51,11 +47,9 @@ const BasicTable = () => {
   const table = useReactTable({
     data,
     columns,
-    state: { globalFilter, sorting, pagination },
-    globalFilterFn: fuzzyFilter,
+    state: { sorting, pagination },
     getCoreRowModel: getCoreRowModel(),
-    onGlobalFilterChange: setGlobalFilter,
-    getFilteredRowModel: getFilteredRowModel(),
+    manualFiltering: true,
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
     manualPagination: true,
@@ -76,10 +70,12 @@ const BasicTable = () => {
   }
 
   return (
-    <Box width="56rem" marginLeft="auto" marginRight="auto" px="1rem">
+    <Box width="50rem" marginLeft="auto" marginRight="auto" px="1rem">
       <Header />
-      <HStack my="1.5rem" justify="space-between">
+      <HStack my="1.5rem" spacing="1.7rem" justify="space-between">
         <GlobalFilter callback={(globalFilter) => setGlobalFilter(globalFilter)} />
+        <RatingFilter rating={rating} setRating={setRating} />
+        <YearFilter year={year} setYear={setYear} />
         <AddMovieButton />
       </HStack>
       <MovieTableContainer table={table} />
