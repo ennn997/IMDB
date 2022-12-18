@@ -1,7 +1,5 @@
-import { server } from '../config/server'
-
 export const getMovies = async (context) => {
-  const url = new URL(`${server}/api`)
+  const url = new URL(`/api`)
   url.searchParams.set('start', `${context.queryKey[1] * context.queryKey[2]}`)
   url.searchParams.set('size', `${context.queryKey[2]}`)
 
