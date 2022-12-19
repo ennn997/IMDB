@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import { TableContainer, Table, Thead, Tbody, Tr, Th, Td, HStack } from '@chakra-ui/react'
 
 import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons'
@@ -5,6 +7,8 @@ import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons'
 import { flexRender } from '@tanstack/react-table'
 
 const MovieTableContainer = ({ table }) => {
+  const router = useRouter()
+
   return (
     <TableContainer>
       <Table>
@@ -42,7 +46,12 @@ const MovieTableContainer = ({ table }) => {
 
         <Tbody>
           {table.getRowModel().rows.map((row) => (
-            <Tr key={row.id}>
+            <Tr
+              key={row.id}
+              onClick={() => {
+                router.push({ pathname: `/titleDetailPage`, query: { title: row.original.title } })
+              }}
+            >
               {row.getAllCells().map((cell) => (
                 <Td
                   key={cell.id}
