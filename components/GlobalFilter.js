@@ -11,7 +11,7 @@ const GlobalFilter = ({ callback }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} data-cy="global filter input">
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

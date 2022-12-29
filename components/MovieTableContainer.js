@@ -10,7 +10,7 @@ const MovieTableContainer = ({ table }) => {
   const router = useRouter()
 
   return (
-    <TableContainer>
+    <TableContainer data-cy="table">
       <Table>
         <Thead>
           {table.getHeaderGroups().map((headerGroup) => (

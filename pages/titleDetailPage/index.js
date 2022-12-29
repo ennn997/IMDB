@@ -9,7 +9,7 @@ const DetailPage = () => {
 
   return (
     <>
-      <Button onClick={() => router.back()} variant="ghost">
+      <Button onClick={() => router.back()} variant="ghost" data-cy="back button">
         Go Back
       </Button>
       <TitleDetailPage />

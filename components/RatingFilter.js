@@ -5,7 +5,14 @@ const RatingFilter = ({ rating, setRating }) => {
     setRating(e.target.value)
   }
   return (
-    <Select width="5.6rem" border="0.17rem solid #C9DCEB" fontSize="0.9rem" value={rating} onChange={handleChange}>
+    <Select
+      width="5.6rem"
+      border="0.17rem solid #C9DCEB"
+      fontSize="0.9rem"
+      value={rating}
+      onChange={handleChange}
+      data-cy="select"
+    >
       <option value="">-</option>
       <option value="0">0-1</option>
       <option value="1">1-2</option>

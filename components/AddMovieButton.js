@@ -9,7 +9,14 @@ const AddMovieButton = () => {
     router.push('/newMovie')
   }
   return (
-    <Button color="white" bg="blue.500" _hover={{ opacity: 0.8 }} onClick={handleNewMovie} width="8rem">
+    <Button
+      color="white"
+      bg="blue.500"
+      _hover={{ opacity: 0.8 }}
+      onClick={handleNewMovie}
+      width="8rem"
+      data-cy="add button"
+    >
       + Add Movie
     </Button>
   )

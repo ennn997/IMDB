@@ -10,6 +10,7 @@ const YearFilter = ({ year, setYear }) => {
         width="4.5rem"
         fontSize="0.9rem"
         border="0.17rem solid #C9DCEB"
+        data-cy="min"
       />
       <Input
         value={year?.[1] || ''}
@@ -18,6 +19,7 @@ const YearFilter = ({ year, setYear }) => {
         width="4.5rem"
         fontSize="0.9rem"
         border="0.17rem solid #C9DCEB"
+        data-cy="max"
       />
     </>
   )

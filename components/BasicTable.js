@@ -87,6 +87,7 @@ const BasicTable = () => {
           colorScheme="white"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          data-cy="previous"
         >
           Prev
         </Button>
@@ -97,6 +98,7 @@ const BasicTable = () => {
           textColor="blue.500"
           border="0.17rem solid #C9DCEB"
           colorScheme="white"
+          data-cy="next"
         >
           Next
         </Button>
