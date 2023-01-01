@@ -15,7 +15,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@hookform/resolvers": "^2.9.10",
-    "@prisma/client": "^4.7.1",
+    "@prisma/client": "^4.8.0",
     "@tanstack/react-query": "^4.13.5",
     "@tanstack/react-table": "^8.5.22",
     "framer-motion": "^6.5.1",
@@ -31,6 +31,6 @@
     "cypress": "^12.1.0",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
-    "prisma": "^4.7.1"
+    "prisma": "^4.8.0"
   }
 }
