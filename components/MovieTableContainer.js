@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 
+import { useSession } from 'next-auth/react'
+
 import { TableContainer, Table, Thead, Tbody, Tr, Th, Td, HStack } from '@chakra-ui/react'
 
 import { ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons'
@@ -8,6 +10,16 @@ import { flexRender } from '@tanstack/react-table'
 
 const MovieTableContainer = ({ table }) => {
   const router = useRouter()
+
+  const { data: session } = useSession()
+
+  if (!session) {
+    table.resetColumnVisibility()
+  }
+
+  if (session) {
+    table.setColumnVisibility(true)
+  }
 
   return (
     <TableContainer data-cy="table">
@@ -52,7 +64,7 @@ const MovieTableContainer = ({ table }) => {
                 router.push({ pathname: `/titleDetailPage`, query: { title: row.original.title } })
               }}
             >
-              {row.getAllCells().map((cell) => (
+              {row.getVisibleCells().map((cell) => (
                 <Td
                   key={cell.id}
                   border="0.12rem solid #C9DCEB"

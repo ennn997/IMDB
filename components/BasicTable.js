@@ -32,6 +32,8 @@ const BasicTable = () => {
     pageSize: 10,
   })
 
+  const [columnVisibility, setColumnVisibility] = useState(false)
+
   const {
     isLoading,
     data: movies,
@@ -47,7 +49,8 @@ const BasicTable = () => {
   const table = useReactTable({
     data,
     columns,
-    state: { sorting, pagination },
+    state: { sorting, pagination, columnVisibility },
+    initialState: { columnVisibility: { action: false } },
     getCoreRowModel: getCoreRowModel(),
     manualFiltering: true,
     getSortedRowModel: getSortedRowModel(),
@@ -55,6 +58,7 @@ const BasicTable = () => {
     manualPagination: true,
     onPaginationChange: setPagination,
     pageCount: data && data.length,
+    onColumnVisibilityChange: setColumnVisibility,
   })
 
   if (isLoading) {
@@ -70,7 +74,7 @@ const BasicTable = () => {
   }
 
   return (
-    <Box width="50rem" marginLeft="auto" marginRight="auto" px="1rem">
+    <Box width="54rem" marginLeft="auto" marginRight="auto" px="1rem">
       <Header />
       <HStack my="1.5rem" spacing="1.7rem" justify="space-between">
         <GlobalFilter callback={(globalFilter) => setGlobalFilter(globalFilter)} />
