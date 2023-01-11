@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { useRouter } from 'next/router'
 
 import { useSession } from 'next-auth/react'
@@ -13,13 +15,15 @@ const MovieTableContainer = ({ table }) => {
 
   const { data: session } = useSession()
 
-  if (!session) {
-    table.resetColumnVisibility()
-  }
+  useEffect(() => {
+    if (!session) {
+      table.resetColumnVisibility()
+    }
 
-  if (session) {
-    table.setColumnVisibility(true)
-  }
+    if (session) {
+      table.setColumnVisibility(true)
+    }
+  })
 
   return (
     <TableContainer data-cy="table">
