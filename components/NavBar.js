@@ -13,7 +13,7 @@ const NavBar = () => {
 
   if (session) {
     btn = (
-      <Button as="a" variant="link" fontSize="sm" fontWeight={600} width="5rem" onClick={() => signOut()} href="/">
+      <Button as="a" variant="link" fontSize="sm" fontWeight={600} width="5rem" onClick={() => signOut()}>
         Sign Out
       </Button>
     )
