@@ -17,9 +17,7 @@ export const getMovies = async (context) => {
     url.searchParams.set('year', context.queryKey[5] || '')
   }
 
-  const response = await fetch(url.href, {
-    mode: 'no-cors',
-  })
+  const response = await fetch(url.href)
 
   if (response.ok) {
     return response.json()
