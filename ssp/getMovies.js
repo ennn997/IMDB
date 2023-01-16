@@ -1,5 +1,6 @@
 import { server } from '../config/server'
 
+
 export const getMovies = async (context) => {
   const url = new URL(`${server}/api`)
   url.searchParams.set('start', `${context.queryKey[1] * context.queryKey[2]}`)
@@ -18,6 +19,7 @@ export const getMovies = async (context) => {
   }
 
   const response = await fetch(url.href)
+
 
   if (response.ok) {
     return response.json()
