@@ -6,6 +6,8 @@ import { getMovies } from '../ssp/getMovies'
 
 import BasicTable from '../components/BasicTable'
 
+import NavBar from '../components/NavBar'
+
 const Home = () => {
   return (
     <>
@@ -14,6 +16,7 @@ const Home = () => {
           <title>IMDB website</title>
         </Head>
       </div>
+      <NavBar />
       <div>
         <BasicTable />
       </div>

@@ -105,32 +105,32 @@ const NewMovieForm = () => {
         <form onSubmit={onSubmit}>
           <FormControl isInvalid={errors.title}>
             <FormLabel mt="2rem">Title</FormLabel>
-            <Input borderWidth="0.2rem" {...register('title')} />
-            <FormErrorMessage>Please add Movie title!</FormErrorMessage>
+            <Input borderWidth="0.2rem" {...register('title')} data-cy="title input" />
+            <FormErrorMessage data-cy="title error msg">Please add Movie title!</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={errors.ratings}>
             <FormLabel mt="0.8rem">Ratings</FormLabel>
-            <Input borderWidth="0.2rem" {...register('ratings')} />
-            <FormErrorMessage>Please rate a movie from 0-10!</FormErrorMessage>
+            <Input borderWidth="0.2rem" {...register('ratings')} data-cy="rating input" />
+            <FormErrorMessage data-cy="rating error msg">Please rate a movie from 0-10!</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={errors.year}>
             <FormLabel mt="0.8rem">Year</FormLabel>
-            <Input borderWidth="0.2rem" {...register('year')} />
-            <FormErrorMessage>Please add a year when movie is released!</FormErrorMessage>
+            <Input borderWidth="0.2rem" {...register('year')} data-cy="year input" />
+            <FormErrorMessage data-cy="year error msg">Please add a year when movie is released!</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={errors.director}>
             <FormLabel mt="0.8rem">Director</FormLabel>
-            <Input borderWidth="0.2rem" {...register('director')} />
-            <FormErrorMessage>Please add name of director!</FormErrorMessage>
+            <Input borderWidth="0.2rem" {...register('director')} data-cy="director input" />
+            <FormErrorMessage data-cy="director error msg">Please add name of director!</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={errors.starring}>
             <FormLabel mt="0.8rem">Starring</FormLabel>
-            <Input borderWidth="0.2rem" {...register('starring')} />
-            <FormErrorMessage>Please add name of starring actor!</FormErrorMessage>
+            <Input borderWidth="0.2rem" {...register('starring')} data-cy="starring input" />
+            <FormErrorMessage data-cy="starring error msg">Please add name of starring actor!</FormErrorMessage>
           </FormControl>
 
           <Stack mt="1rem" spacing={2} direction="row" justify="right">
@@ -140,10 +140,11 @@ const NewMovieForm = () => {
               colorScheme="white"
               width="5rem"
               onClick={handleCancel}
+              data-cy="cancel button"
             >
               Cancel
             </Button>
-            <Button colorScheme="blue" width="5rem" type="submit">
+            <Button colorScheme="blue" width="5rem" type="submit" data-cy="submit button">
               Add
             </Button>
           </Stack>

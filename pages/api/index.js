@@ -12,11 +12,38 @@ const movieSchema = Joi.object().keys({
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+
+    const { start, size, globalFilter, rating, year } = req.query
+
     try {
-      const movies = await prisma.movie.findMany()
-      res.status(200).json(movies)
+      let movies = await prisma.movie.findMany()
+
+      if (globalFilter) {
+        movies = movies.filter(
+          (row) =>
+            row.title?.toString()?.toLowerCase()?.includes?.(globalFilter.toLowerCase()) ||
+            row.director?.toString()?.toLowerCase()?.includes?.(globalFilter.toLowerCase()) ||
+            row.starring?.toString()?.toLowerCase()?.includes?.(globalFilter.toLowerCase())
+        )
+      }
+
+      if (rating) {
+        movies = movies.filter((row) => row.ratings >= rating && row.ratings <= rating + 1)
+      }
+
+      if (year) {
+        movies = movies.filter((row) => row.year >= year.slice(0, 4) && row.year <= year.slice(5))
+      }
+
+      let pageCount = 0
+      pageCount = Math.ceil(movies.length / 10)
+
+      res
+        .status(200)
+        .json({ movies: movies.slice(parseInt(start), parseInt(start) + parseInt(size)) ?? [], pageCount: pageCount })
     } catch (error) {
-      res.status(500).json({ error: 'Oops, something went wrong! ' })
+      res.status(500).json({ error: 'Oops, something went wrong!' })
     }
   } else if (req.method === 'POST') {
     const { error, value } = movieSchema.validate(req.body)
