@@ -44,7 +44,7 @@ const BasicTable = () => {
   })
 
   const columns = useMemo(() => COLUMNS, [])
-  const data = useMemo(() => movies, [movies])
+  const data = useMemo(() => movies?.movies, [movies])
 
   const table = useReactTable({
     data,
@@ -57,7 +57,7 @@ const BasicTable = () => {
     onSortingChange: setSorting,
     manualPagination: true,
     onPaginationChange: setPagination,
-    pageCount: data && data.length,
+    pageCount: movies?.pageCount,
     onColumnVisibilityChange: setColumnVisibility,
   })
 

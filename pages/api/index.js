@@ -36,7 +36,12 @@ export default async function handler(req, res) {
         movies = movies.filter((row) => row.year >= year.slice(0, 4) && row.year <= year.slice(5))
       }
 
-      res.status(200).json(movies.slice(parseInt(start), parseInt(start) + parseInt(size)) ?? [])
+      let pageCount = 0
+      pageCount = Math.ceil(movies.length / 10)
+
+      res
+        .status(200)
+        .json({ movies: movies.slice(parseInt(start), parseInt(start) + parseInt(size)) ?? [], pageCount: pageCount })
     } catch (error) {
       res.status(500).json({ error: 'Oops, something went wrong!' })
     }
